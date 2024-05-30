@@ -179,74 +179,8 @@ namespace ZombieGame
                     
              
         }
-        //Methods regarding Item Arrays by Samuel B 27/05/2024----------------------
-        static string[] RemoveItem(string[] array, string itemToRemove)
-        {
-            int index = Array.IndexOf(array, itemToRemove);
-            //If the item is not found
-            if (index < 0)
-                return array;
-            //New array length is lesser than original
-            string[] newArray = new string[array.Length - 1];
-            //Array, Start Index, NewArray, Start Index, Num of Elements to copy to (exclusive)
-            Array.Copy(array, 0, newArray, 0, index);
-            Array.Copy(array, index + 1, newArray, index, newArray.Length - index);
-            return newArray;
-        }
-        //Method for add items back to the item array by Samuel B 29/05/2024
-        static string[] AddItem(string[] array, string itemToAdd)
-        {
-            string[] newArray = new string[array.Length + 1];
-            Array.Copy(array, newArray, array.Length);
-            newArray[newArray.Length - 1] = itemToAdd;
-            return newArray;
-        }
-        //-----------------------------------------------------------
-
-        //Methods regarding the inventory array by Samuel B 27/05/2024-----------------------
-        //Method for Adding items to inv  by Samuel B 29/05/2024
-        static void AddItemInv(string item)
-        {
-            Array.Resize(ref Inventory, Inventory.Length + 1);
-
-            Inventory[Inventory.Length - 1] = item;
-            Console.WriteLine("You grabbed the " + item + ".");
-
-        }
-        //Method for removing items to inv  by Samuel B 29/05/2024
-        static void DropItemInv(string item)
-        {
-           int index = Array.IndexOf(Inventory, item);
-            //If the item isn't found
-            if (index < 0)
-            {
-                Console.WriteLine("You don't have a " + item + " in your inventory.");
-                return;
-            }
-            Inventory = RemoveItem(Inventory, item);
-            Console.WriteLine("You dropped the " + item + ".");
-
-        }
-        //Inventory method by Samuel B 27/05/2024//
-        static void ShowInventory()
-        {
-            if (Inventory.Length == 0)
-            {
-                Console.WriteLine("Your inventory appears to be empty");
-
-            }
-            else
-            {
-                Console.WriteLine("Items in Inventory: ");
-                foreach (string item in Inventory)
-                {
-
-                    Console.WriteLine("- " + item);
-                }
-            }
-
-        }
-       //--------------------------------
+        
+        
         
         //Thomas F 28/05/2024 working on the south method
         static void South()
@@ -414,50 +348,7 @@ namespace ZombieGame
         {
             Console.WriteLine("You have gone West");
         }
-        static void map()
-        {        //Mustafa 25/05/2024 - Adding a basic map to be used for now will make a better one..
-            //Samuel 28/05/2024 - Updated map
-            Console.WriteLine(@"
-
-
-
-
-
-                                                                             HOUSE
-                                                   Convenience Store           |                   Park
-                                         Pharmacy      |                       |                     |     House
-                                                  \    |                     South                   |    /
-                                                   \   |                       |                     |   /
-                                                      West    <----------------|---------------->   East           North
-                                                   /   |                       |                     |   \        /
-                                                  /    |                       |                     |    \      /
-                                        Town Hall      |                       |                     |     Forest ----- East
-                                                     Street                    |                   Church        \
-                                                                               |                                  \
-                                                                             South                                  South
-                                                                            /     \
-                                                                           /       \
-                                                                       Left         Right
-                                                                        |             |
-                                                                      School          Beach
-
-      N
-      |
-   W<--->E
-      |
-      S
-");
-        }
-        static void PrintOneByOne(string text)
-        {
-            //Mustafa - Making the characters one by one
-            foreach (char c in text)
-            {
-                Console.Write(c);
-                Thread.Sleep(05);
-            }
-            Console.ReadLine();
-        }
+        
         static void Forest()
         {   //Mustafa but Thomas is fixed 30/05/24
             Console.WriteLine("\nYou are Wondering through the forest");
@@ -535,23 +426,7 @@ namespace ZombieGame
                 Console.WriteLine("\nThe path you seek does not exist in this forsaken place. Choose wisely, for each misstep might be your last. Dare to try again, and may the shadows guide you.");
             }
         }
-        //Instructions method by Sam B
-        static string Instructions(string inst)
-        {
-            inst = @"INSTRUCTIONS:
-             You will be stationed within the haunted village, known as Dubravica
-             located in the European country of Croatia.When exploring through
-             the haunted village, stay alert and avoid zombies by staying out of sight
-             and moving quietly.Explore different areas of the village and search for
-             supplies such as food, medical kits etc.Your final objective is to locate
-             the final evacuation point, your final score will be based on time taken,
-             resources gathered and zombies defeated.
-             Good luck, and stay safe out there!. 
-             (If you get stuck, type 'help' or '?' for some general hints)
-
-             Press enter to continue....";
-            return inst;
-        }
+        
         //Church -Mustafa (Made a bit story here :) ) 
         static void Church()
         {
@@ -575,6 +450,25 @@ namespace ZombieGame
             key = key + 1;
             Console.ReadLine();
         }
+        //METHOD's THAT AREN'T ROOMS --------------------------------------------------------
+        //Instructions method by Sam B
+        static string Instructions(string inst)
+        {
+            inst = @"INSTRUCTIONS:
+             You will be stationed within the haunted village, known as Dubravica
+             located in the European country of Croatia.When exploring through
+             the haunted village, stay alert and avoid zombies by staying out of sight
+             and moving quietly.Explore different areas of the village and search for
+             supplies such as food, medical kits etc.Your final objective is to locate
+             the final evacuation point, your final score will be based on time taken,
+             resources gathered and zombies defeated.
+             Good luck, and stay safe out there!. 
+             (If you get stuck, type 'help' or '?' for some general hints)
+
+             Press enter to continue....";
+            return inst;
+        }
+
         static void PrintOneByOne2(string text)
         {
             //Mustafa - Making the characters one by one for the survivor and the player talking for the hint of evac
@@ -601,5 +495,124 @@ namespace ZombieGame
              Console.ReadLine();
          }
         */
+        //Inventory method by Samuel B 27/05/2024//
+        
+        static void map()
+        {        //Mustafa 25/05/2024 - Adding a basic map to be used for now will make a better one..
+            //Samuel 28/05/2024 - Updated map
+            Console.WriteLine(@"
+
+
+
+
+
+                                                                             HOUSE
+                                                   Convenience Store           |                   Park
+                                         Pharmacy      |                       |                     |     House
+                                                  \    |                     South                   |    /
+                                                   \   |                       |                     |   /
+                                                      West    <----------------|---------------->   East           North
+                                                   /   |                       |                     |   \        /
+                                                  /    |                       |                     |    \      /
+                                        Town Hall      |                       |                     |     Forest ----- East
+                                                     Street                    |                   Church        \
+                                                                               |                                  \
+                                                                             South                                  South
+                                                                            /     \
+                                                                           /       \
+                                                                       Left         Right
+                                                                        |             |
+                                                                      School          Beach
+
+      N
+      |
+   W<--->E
+      |
+      S
+");
+        }
+        static void PrintOneByOne(string text)
+        {
+            //Mustafa - Making the characters one by one
+            foreach (char c in text)
+            {
+                Console.Write(c);
+                Thread.Sleep(05);
+            }
+            Console.ReadLine();
+        }
+        static void ShowInventory()
+        {
+            if (Inventory.Length == 0)
+            {
+                Console.WriteLine("Your inventory appears to be empty");
+
+            }
+            else
+            {
+                Console.WriteLine("Items in Inventory: ");
+                foreach (string item in Inventory)
+                {
+
+                    Console.WriteLine("- " + item);
+                }
+            }
+
+        }
+
+        //Methods regarding Item Arrays by Samuel B 27/05/2024----------------------
+        static string[] RemoveItem(string[] array, string itemToRemove)
+        {
+            int index = Array.IndexOf(array, itemToRemove);
+            //If the item is not found
+            if (index < 0)
+                return array;
+            //New array length is lesser than original
+            string[] newArray = new string[array.Length - 1];
+            //Array, Start Index, NewArray, Start Index, Num of Elements to copy to (exclusive)
+            Array.Copy(array, 0, newArray, 0, index);
+            Array.Copy(array, index + 1, newArray, index, newArray.Length - index);
+            return newArray;
+        }
+        //Method for add items back to the item array by Samuel B 29/05/2024
+        static string[] AddItem(string[] array, string itemToAdd)
+        {
+            string[] newArray = new string[array.Length + 1];
+            Array.Copy(array, newArray, array.Length);
+            newArray[newArray.Length - 1] = itemToAdd;
+            return newArray;
+        }
+        //-----------------------------------------------------------
+
+        //Methods regarding the inventory array by Samuel B 27/05/2024-----------------------
+        //Method for Adding items to inv  by Samuel B 29/05/2024
+        static void AddItemInv(string item)
+        {
+            Array.Resize(ref Inventory, Inventory.Length + 1);
+
+            Inventory[Inventory.Length - 1] = item;
+            Console.WriteLine("You grabbed the " + item + ".");
+
+        }
+        //Method for removing items to inv  by Samuel B 29/05/2024
+        static void DropItemInv(string item)
+        {
+            int index = Array.IndexOf(Inventory, item);
+            //If the item isn't found
+            if (index < 0)
+            {
+                Console.WriteLine("You don't have a " + item + " in your inventory.");
+                return;
+            }
+            Inventory = RemoveItem(Inventory, item);
+            Console.WriteLine("You dropped the " + item + ".");
+
+        }
+
+
+
+
+        //--------------------------------
+
     }
 }
